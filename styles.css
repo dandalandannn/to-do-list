@@ -1,0 +1,65 @@
+body{
+    background-color: #000000;
+    color: #ffffff;
+    font-family: Arial, Helvetica, sans-serif;
+}
+input[type="checkbox"] {
+    appearance: none;
+    width: 20px;
+    height: 20px;
+    background-color: #f0f0f0;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: all 0.3s;
+
+  }
+  input[type="checkbox"]:checked {
+    background-color: #4caf50;
+    border-color: #4caf50;
+    background-image: url('data:image/svg+xml;charset=UTF-8,%3Csvg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16"%3E%3Cpath fill="%23fff" d="M6.173 12.027L2.97 8.854a.75.75 0 011.06-1.06l2.543 2.543L12.47 4.44a.75.75 0 011.06 1.06L6.173 12.027z"/%3E%3C/svg%3E');
+    background-size: 12px;
+    background-position: center;
+  }
+.input{
+    border: none;
+    width: 200px;
+    height: 15px;
+    padding: 10px;
+    margin: 10px;
+}
+.save-btn{
+    border: none;
+    padding: 10px;
+    cursor: pointer;
+    background-color: #ffffffe6;
+}
+.save-btn:active{
+    background-color: #ffffff;
+}
+.date-btn{
+    border: none;
+    height: 15px;
+    width: 15px;
+    padding: 10px;
+    margin-right: 2px;
+
+}
+.to-do-list{
+    display: grid;
+    grid-template-columns: 285px 20px;
+    margin: 10px;
+    width: 200px;
+    height: 100px;
+}
+.due-date{
+    font-size:x-small;
+    font-weight: bold;
+    font-family:'Trebuchet MS', 'Lucida Sans Unicode', 'Lucida Grande', 'Lucida Sans', Arial, sans-serif;
+    color: rgba(255, 255, 255, 0.5);
+}
+@media screen and (max-width:400px){
+    .input{
+        width: 150px;
+    }
+}
