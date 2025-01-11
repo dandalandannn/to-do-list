@@ -45,6 +45,14 @@ const renderShit = () => {
     }
     taskContainer.innerHTML = tempHTML;
     finishedContainer.innerHTML = fTempHTML;
+    if (dateList.length == 0 && fDateList.length == 0){ 
+        taskContainer.innerHTML = 
+        `<div class="tasks">
+            <div style="color: #666;">Start setting your goals!</div>
+        </div>`;
+    
+    return;
+    }
 }
 
 const handleTaskInput = (e) => {
@@ -86,4 +94,3 @@ const deleteFinished = () => {
 }
 
 renderShit();
-console.log("tangin");
