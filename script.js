@@ -4,12 +4,15 @@ const checkboxes = document.querySelector(".checkboxes");
 const checkedCheckboxes = document.querySelector(".checked-checkboxes");
 const taskContainer = document.querySelector(".task-list-container");
 const finishedContainer = document.querySelector(".finished-list-container");
-
 const araw = document.querySelector(".date-today");
-const date = new Date()
-const result = date.toISOString().split('T')[0]
+let result; 
 
-araw.innerHTML = result;
+const startPage = () => {
+    const date = new Date();
+    date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
+    result = date.toISOString().split('T')[0];
+    araw.innerHTML = result;
+};
 
 const taskList = [];
 const dateList = [];
@@ -94,3 +97,4 @@ const deleteFinished = () => {
 }
 
 renderShit();
+startPage();
