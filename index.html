@@ -3,21 +3,39 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ToDo List.</title>
+    <title>To Do List</title>
     <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <h1>ToDo List.</h1>
-
-    <form onsubmit="addTask(event)">
-    <input type="text" class="input" placeholder="Add a task" required><input class="date-btn" type="date" required><button type="submit" class="save-btn">Save</button>
+    <form onsubmit="handleTaskInput(event)">
+        <input class="task-input" type="text" placeholder="Add a task">
+        <input class="date-input" type="date" required>
+        <button class="submit-btn" type="submit">Save</button>
     </form>
-
+    <br>
     <div class="to-do-list">
-        
-        <div class="tasks" id="">Sample <p class="due-date">2025-01-10</p>
-        </div> <div><input type="checkbox" class="checkbox"></div>
-        
+        <div class="task-list-container">
+            <!--Where tasks go-->
+            <div class="tasks">
+                <div>${taskList[i]}
+                    <p class="dates">${dateList[i]}</p>
+                </div>
+                <div>
+                    <input type="checkbox" class="checkboxes" onclick="console.log(`omfg`)">
+                </div>
+            </div>
+        </div>
+        <div class="finished-list-container">
+            <div class="tasks">
+                <div> Finished sample 
+                    <p class="dates">01/01/2020</p>
+                </div>
+                <div>
+                    <input type="checkbox" class="checkboxes">
+                </div>
+            </div>
+        </div>
     </div>
 
     <script src="script.js"></script>
