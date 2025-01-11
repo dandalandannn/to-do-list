@@ -5,8 +5,11 @@ const checkedCheckboxes = document.querySelector(".checked-checkboxes");
 const taskContainer = document.querySelector(".task-list-container");
 const finishedContainer = document.querySelector(".finished-list-container");
 
+const araw = document.querySelector(".date-today");
 const date = new Date()
 const result = date.toISOString().split('T')[0]
+
+araw.innerHTML = result;
 
 const taskList = [];
 const dateList = [];
@@ -72,6 +75,13 @@ const handleUnfinish = (num) => {
     fTaskList.splice(num, 1);
     fDateList.splice(num, 1);
     
+    renderShit();
+}
+
+const deleteFinished = () => {
+    fTaskList.splice(0, fTaskList.length);
+    fDateList.splice(0, fDateList.length);
+
     renderShit();
 }
 
