@@ -7,18 +7,15 @@ const finishedContainer = document.querySelector(".finished-list-container");
 const araw = document.querySelector(".date-today");
 let result; 
 
+const taskList = [];
+const finishList = [];
+
 const startPage = () => {
     const date = new Date();
     date.setMinutes(date.getMinutes() - date.getTimezoneOffset());
     result = date.toISOString().split('T')[0];
     araw.innerHTML = result;
 };
-
-const taskList = [];
-const dateList = [];
-
-const fTaskList = [];
-const fDateList = [];
 
 const renderShit = () => {
     let tempHTML = "";
@@ -27,19 +24,19 @@ const renderShit = () => {
     for(let i = 0; i < taskList.length; i++){
         tempHTML += 
             `<div class="tasks">
-                <div>${taskList[i]}
-                    <p class="dates">${result === dateList[i]? `Today`: dateList[i]}</p>
+                <div>${taskList[i].task}
+                    <p class="dates">${result === taskList[i].due? `Today`: taskList[i].due}</p>
                 </div>
                 <div>
                     <input type="checkbox" class="checkboxes" onclick="handleFinished(${i})">
                 </div>
             </div>`;
     }
-    for(let i = 0; i < fTaskList.length; i++){
+    for(let i = 0; i < finishList.length; i++){
         fTempHTML +=
             `<div class="tasks">
-                <div>${fTaskList[i]}
-                   <p class="dates">${result === fDateList[i]? `Today`: fDateList[i]}</p>
+                <div>${finishList[i].task}
+                   <p class="dates">${result === finishList[i].due? `Today`: finishList[i].due}</p>
                 </div>
                 <div>
                     <input type="checkbox" checked class="checked-checkboxes"  onclick="handleUnfinish(${i})">
@@ -48,7 +45,8 @@ const renderShit = () => {
     }
     taskContainer.innerHTML = tempHTML;
     finishedContainer.innerHTML = fTempHTML;
-    if (dateList.length == 0 && fDateList.length == 0){ 
+
+    if (taskList.length == 0 && finishList.length == 0){ 
         taskContainer.innerHTML = 
         `<div class="tasks">
             <div style="color: #666;">Start setting your goals!</div>
@@ -61,38 +59,37 @@ const renderShit = () => {
 const handleTaskInput = (e) => {
     e.preventDefault();
 
-    taskList.push(taskInput.value);
-    dateList.push(dateInput.value);
+    taskList.push({
+        task: taskInput.value,
+        due: dateInput.value
+    });
 
     renderShit();
     taskInput.value = "";
     dateInput.value = "";
 }
 const handleFinished = (num) => {
-    
 
-    fTaskList.push(taskList[num]);
-    fDateList.push(dateList[num]);
+    finishList.push({
+        task: taskList[num].task,
+        due: taskList[num].due
+    });
 
-    taskList.splice(num, 1);
-    dateList.splice(num, 1);
-    
+    taskList.splice(num, 1);   
     renderShit();
 }
 const handleUnfinish = (num) => {
-    taskList.push(fTaskList[num]);
-    dateList.push(fDateList[num]);
 
-    fTaskList.splice(num, 1);
-    fDateList.splice(num, 1);
-    
+    taskList.push({
+        task: finishList[num].task,
+        due: finishList[num].due
+    });
+
+    finishList.splice(num, 1);   
     renderShit();
 }
-
 const deleteFinished = () => {
-    fTaskList.splice(0, fTaskList.length);
-    fDateList.splice(0, fDateList.length);
-
+    finishList.length = 0;
     renderShit();
 }
 
